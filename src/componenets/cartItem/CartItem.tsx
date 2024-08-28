@@ -7,46 +7,54 @@ import { ProductsType } from "../../types/Type";
 
 interface ICartItem {
   id: number;
-  qty: number
+  qty: number;
 }
 
 export default function CartItem({ id, qty }: ICartItem) {
   const [product, setProduct] = useState<ProductsType>();
 
-  const { handleIncreaseProductQty, handleDecreaseProductQty, handleRemoveProduct } = useShoppingCartContext(); // Use context functions
+  const { handleIncreaseProductQty, handleDecreaseProductQty, handleRemoveProduct } = useShoppingCartContext();
 
   useEffect(() => {
     getProductArticle(id).then((data) => {
       setProduct(data);
     });
-  }, [id]); // Add id to dependency array
+  }, [id]);
+
+  const productTotalPrice = product ? product.price * qty : 0;
 
   return (
     <Container>
       <div className="bg-white rounded-lg shadow-md p-4 mb-4">
         <div className="flex justify-between items-center">
-          <div className="flex items-center">
-            <img src={product?.image} alt={product?.title} className="w-24 h-24 object-cover rounded-lg" />
+          <div className="flex items-center m-10">
+            <img src={product?.image} alt={product?.title} className="w-60 h-60 object-cover rounded-lg" />
             <div className="ml-4">
-              <h2 className="text-lg font-bold">{product?.title}</h2>
-              <p className="text-sm text-gray-500">{product?.description}</p>
-              <p className="text-sm font-bold text-red-500 mt-2">{product?.price ?? 0} تومان</p>
+              <h2 className="text-lg font-bold text-center mb-5">{product?.title}</h2>
+              <p className="text-sm text-gray-500 text-center leading-8">{product?.description}</p>
+              <p className="text-xl font-bold text-red-500 text-center mt-7">{product?.price ?? 0} تومان</p>
             </div>
           </div>
-          <div className="flex items-center space-x-4">
+          <div className="flex items-center space-x-2">
             <Button
               onClick={() => handleIncreaseProductQty(id, product?.price ?? 0, product?.discount ?? 0)}
-              className="border-gray-400 text-gray-700 px-2 py-1"
+              variant="primary"
+              className="w-16 h-10 flex items-center justify-center font-bold"
             >
               +
             </Button>
-            <span className="text-lg font-bold">{qty}</span>
-            <Button onClick={() => handleDecreaseProductQty(id)} className="border-gray-400 text-gray-700 px-2 py-1">-</Button>
+            <span
+              className="w-16 h-10 flex items-center justify-center font-bold bg-green-300 ">{qty}</span>
+            <Button onClick={() => handleDecreaseProductQty(id)} variant="warning"
+              className="w-16 h-10 flex items-center justify-center font-bold">-</Button>
           </div>
           <div className="flex flex-col items-end">
-            <Button onClick={() => handleRemoveProduct(id)} variant="danger" className="mt-2">حذف</Button>
+            <Button onClick={() => handleRemoveProduct(id)} variant="danger"
+              className="w-20 h-10 flex items-center justify-center font-bold">حذف</Button>
           </div>
-          {/* <p className="text-right text-red-500">مجموع{totalPrice} تومان</p> */}
+          <div className=" items-end p-1">
+            <p className="text-lg font-bold text-green-600 ml-7">{productTotalPrice} تومان</p>
+          </div>
         </div>
       </div>
     </Container>

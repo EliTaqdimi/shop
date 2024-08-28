@@ -14,7 +14,7 @@ export interface ICartItem {
 
 }
 
-interface IShoppingCartContext {
+export interface IShoppingCartContext {
   cartItems: ICartItem[];
   handleIncreaseProductQty: (id: number, price: number, discount: number) => void;
   handleDecreaseProductQty: (id: number) => void;
@@ -108,7 +108,7 @@ export const ShoppingCartContextProvider = ({
   }, 0);
 
 
-  const discount = 0.50;
+  const discount = 10;
 
 
 
@@ -118,7 +118,7 @@ export const ShoppingCartContextProvider = ({
   const Navigate = useNavigate()
 
   const handleLogin = () => {
-    login('elahe', '123456').finally(() => {
+    login('', '').finally(() => {
       let token = 'n2ixyjUzM'
       localStorage.setItem('token', token)
       setIsLogin(true)

@@ -4,7 +4,8 @@ import { ProductsType } from '../../types/Type';
 import Button from "../../componenets/button/Button";
 import { getProductArticle } from "../../services/api";
 import { useShoppingCartContext } from "../../context/ShopContext";
-// import { cartItem } from '../../context/ShopContext';
+import Footer from "../../componenets/footer/Footer";
+
 
 function ProductPageItem() {
   const params = useParams<{ id: string }>();
@@ -35,38 +36,62 @@ function ProductPageItem() {
     return <div>No item found.</div>;
   }
 
-
-
   return (
-    <div className="container mx-auto p-20">
-      <h1 className="text-4xl font-bold mb-4 text-right">توضیح محصول</h1>
-      <div className="flex flex-col md:flex-row items-center">
-        <div className="md:w-1/2 p-4">
-          <img
-            src={product.image}
-            alt="محصول"
-            className="transform transition-transform duration-500 hover:scale-110"
-          />
-        </div>
-        <div className="md:w-1/2 p-4">
-          <h2 className="text-2xl font-bold mb-4 text-right">{product.title}</h2>
-          <p className="text-lg mb-4 text-right">{product.description}</p>
-          <div className="flex justify-around p-4 space-x-1">
-            <Button variant="primary" className="w-16 h-10 flex items-center justify-center font-bold" onClick={() => handleIncreaseProductQty(parseInt(params.id as string))}>+</Button>
-            <Button variant='success' className="w-16 h-10 flex items-center justify-center font-bold">{getProductQty(parseInt(params.id as string))}</Button>
-            <Button variant="warning" className="w-16 h-10 flex items-center justify-center font-bold" onClick={() => handleDecreaseProductQty(parseInt(params.id as string))}>-</Button>
-            <Button variant="danger" className="w-20 h-10 flex items-center justify-center font-bold" onClick={() => handleRemoveProduct(parseInt(params.id as string))}>remove</Button>
-
+    <div className="flex flex-col min-h-screen">
+      <div className="container mx-auto p-20 flex-grow">
+        <h1 className="text-4xl font-bold mb-4 text-right">توضیح محصول</h1>
+        <div className="bg-white shadow-lg rounded-lg overflow-hidden flex flex-col md:flex-row h-auto">
+          <div className="md:w-1/2 p-4">
+            <img
+              src={product.image}
+              alt={product.title}
+              className="w-full h-auto object-cover rounded-lg"
+            />
+          </div>
+          <div className="md:w-1/2 p-6 flex flex-col justify-between">
+            <div>
+              <h2 className="text-2xl font-bold mb-4 text-right">{product.title}</h2>
+              <p className="text-lg mb-4 text-right">{product.description}</p>
+            </div>
+            <div className="flex justify-around -space-x-60 mt-4">
+              <Button
+                variant="primary"
+                className="w-16 h-10 flex items-center justify-center font-bold"
+                onClick={() => handleIncreaseProductQty(
+                  parseInt(params.id as string),
+                  product.price,
+                  product.discount || 0
+                )}
+              >
+                +
+              </Button>
+              <Button
+                variant='success'
+                className="w-16 h-10 flex items-center justify-center font-bold"
+              >
+                {getProductQty(parseInt(params.id as string))}
+              </Button>
+              <Button
+                variant="warning"
+                className="w-16 h-10 flex items-center justify-center font-bold text-gray-700"
+                onClick={() => handleDecreaseProductQty(parseInt(params.id as string))}
+              >
+                -
+              </Button>
+              <Button
+                variant="danger"
+                className="w-20 h-10 flex items-center justify-center font-bold"
+                onClick={() => handleRemoveProduct(parseInt(params.id as string))}
+              >
+                Remove
+              </Button>
+            </div>
           </div>
         </div>
       </div>
+      <Footer />
     </div>
   );
 }
 
 export default ProductPageItem;
-
-
-
-
-

@@ -5,7 +5,8 @@ import { useShoppingCartContext } from '../../context/ShopContext'
 import * as Yup from "yup";
 
 function Login() {
-  const { handleLogin } = useShoppingCartContext()
+  const { handleLogin } = useShoppingCartContext();
+
   const formik = useFormik({
     initialValues: {
       username: "",
@@ -25,21 +26,26 @@ function Login() {
       const { username, password } = values;
 
       console.log(username, password);
+      // عملیات ورود کاربر
+      handleLogin();
+
+      // پاک کردن فرم بعد از ارسال
+      formik.resetForm();
     },
   });
 
-
   return (
-    <div className="mt-40">
+    <div className="flex justify-center items-center min-h-screen bg-gray-100 mb-44">
       <Container>
-        <div className="w-96 h-96 bg-slate-300 mx-auto p-6 rounded">
+        <div className="w-full max-w-lg h-96 bg-slate-600 mx-auto p-6 rounded">
           <form onSubmit={formik.handleSubmit}>
             <input
               value={formik.values.username}
               onChange={formik.handleChange}
               name="username"
-              className="w-full p-2 rounded"
+              className="w-full p-2 rounded mb-4"
               type="text"
+              placeholder="Username"
             />
             {formik.errors.username && formik.touched.username ? (
               <div className="text-red-600">{formik.errors.username}</div>
@@ -49,14 +55,20 @@ function Login() {
               value={formik.values.password}
               onChange={formik.handleChange}
               name="password"
-              className="w-full mt-4 p-2 rounded"
+              className="w-full p-2 rounded mb-4"
               type="password"
+              placeholder="Password"
             />
             {formik.errors.password && formik.touched.password ? (
               <div className="text-red-600">{formik.errors.password}</div>
             ) : null}
+            <Button
+              type="submit"
+              className="w-full p-2 bg-blue-500 text-white rounded hover:bg-red-600 hover:text-white transition duration-300"
+            >
+              Submit
+            </Button>
 
-            <Button type="submit" onClick={handleLogin}>Submit</Button>
           </form>
         </div>
       </Container>

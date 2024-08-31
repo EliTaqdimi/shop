@@ -129,7 +129,8 @@ export const ShoppingCartContextProvider = ({
   const handleLogout = () => {
     setIsLogin(false)
     Navigate('/login')
-    localStorage.removeItem('token')
+    localStorage.removeItem('token');
+    localStorage.removeItem('userEmail'); // پاک‌سازی ایمیل کاربر
   }
   useEffect(() => {
     let token = localStorage.getItem('token');

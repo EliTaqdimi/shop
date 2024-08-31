@@ -11,7 +11,7 @@ function Footer() {
         </div>
         {/* ستون دوم: تماس با ما و حقوق */}
         <div className="flex flex-col items-start md:items-end md:w-1/2">
-          <p className="text-sm mb-2">&copy; {new Date().getFullYear()} تمامی حقوق محفوظ است.</p>
+          <p className="text-sm mb-2">&copy; {new Date().getFullYear()} تمامی حقوق محفوظ است</p>
           <a href="#contact" className="text-sky-400 hover:underline">تماس با ما</a>
         </div>
       </div>

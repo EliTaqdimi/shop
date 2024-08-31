@@ -8,7 +8,7 @@ function ProductItem({ image, title, price }: ProductsType) {
 
         <div className="flex flex-col items-center p-4">
           <p className="font-bold text-center line-clamp-1">{title}</p>
-          <p className="font-bold text-lg mt-2">{price}$</p>
+          <p className="font-bold text-lg mt-2">{price}:تومان</p>
         </div>
       </div>
     </div>

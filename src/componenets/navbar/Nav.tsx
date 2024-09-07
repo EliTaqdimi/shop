@@ -5,6 +5,7 @@ import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
 import { useShoppingCartContext } from "../../context/ShopContext";
 import Button from "../button/Button";
 
+
 function Navbar() {
   const { cartQty, handleLogout } = useShoppingCartContext();
 
@@ -12,7 +13,6 @@ function Navbar() {
     <div className="shadow h-24 flex items-center bg-slate-600">
       <Container>
         <div className="flex justify-between flex-row-reverse">
-
           <ul className="flex flex-row-reverse text-white">
             <li className="ml-4 font-bold">
               <Link to="/">خانه</Link>
@@ -23,10 +23,10 @@ function Navbar() {
           </ul>
 
           <div className="flex items-center text-white">
+            <Button onClick={handleLogout} className="ml-4 p-2 bg-red-500 rounded">خروج</Button>
             <Link to="/login" className="mx-2">ورود</Link>
             <span className="mx-2">|</span>
-            <Link to="/login" className="mx-2">ثبت‌نام</Link>
-            <Button onClick={handleLogout} className="ml-4 p-2 bg-red-500 text-white rounded">خروج</Button>
+            <Link to="/signup" className="mx-2">ثبت‌نام</Link>
             <Link to='/cart' className="relative ml-4">
               <FontAwesomeIcon icon={faShoppingCart} size="2xl" color="white" />
               {cartQty > 0 && (
@@ -36,7 +36,6 @@ function Navbar() {
               )}
             </Link>
           </div>
-
         </div>
       </Container>
     </div>

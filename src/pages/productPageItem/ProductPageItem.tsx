@@ -45,7 +45,7 @@ function ProductPageItem() {
             <img
               src={product.image}
               alt={product.title}
-              className="w-full h-auto object-cover rounded-lg"
+              className="w-full h-auto object-cover rounded-lg transition-transform duration-300 hover:scale-105"
             />
           </div>
           <div className="md:w-1/2 p-6 flex flex-col justify-between">

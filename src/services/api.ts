@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const clientArticle = axios.create({
-  baseURL: "http://localhost:8002",
+  baseURL: "http://localhost:8000",
 });
 
 export async function getProductArticles() {

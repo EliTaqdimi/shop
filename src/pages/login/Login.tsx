@@ -9,12 +9,13 @@ function Login() {
 
   const formik = useFormik({
     initialValues: {
-      email: "",
+      username: "",
       password: "",
     },
     validationSchema: Yup.object().shape({
-      email: Yup.string()
-        .email("Invalid email address")
+      username: Yup.string()
+        .min(2, "Too Short!")
+        .max(50, "Too Long!")
         .required("Required"),
       password: Yup.string()
         .min(5, "Too Short!")
@@ -22,13 +23,13 @@ function Login() {
         .required("Required"),
     }),
     onSubmit: (values) => {
-      const { email, password } = values;
+      const { username, password } = values;
 
-      console.log(email, password);
-      // Handle user login
+      console.log(username, password);
+      // عملیات ورود کاربر
       handleLogin();
 
-      // Reset the form after submission
+      // پاک کردن فرم بعد از ارسال
       formik.resetForm();
     },
   });
@@ -39,16 +40,15 @@ function Login() {
         <div className="w-full max-w-lg h-96 bg-slate-600 mx-auto p-6 rounded">
           <form onSubmit={formik.handleSubmit}>
             <input
-              value={formik.values.email}
+              value={formik.values.username}
               onChange={formik.handleChange}
-              name="email"
+              name="username"
               className="w-full p-2 rounded mb-4"
-              type="email"
-              placeholder="Email"
-
+              type="text"
+              placeholder="Username"
             />
-            {formik.errors.email && formik.touched.email ? (
-              <div className="text-red-600">{formik.errors.email}</div>
+            {formik.errors.username && formik.touched.username ? (
+              <div className="text-red-600">{formik.errors.username}</div>
             ) : null}
 
             <input
@@ -62,13 +62,13 @@ function Login() {
             {formik.errors.password && formik.touched.password ? (
               <div className="text-red-600">{formik.errors.password}</div>
             ) : null}
-
             <Button
               type="submit"
               className="w-full p-2 bg-blue-500 text-white rounded hover:bg-red-600 hover:text-white transition duration-300"
             >
               Submit
             </Button>
+
           </form>
         </div>
       </Container>

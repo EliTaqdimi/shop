@@ -119,7 +119,7 @@ export const ShoppingCartContextProvider = ({
 
   const handleLogin = () => {
     login('', '').finally(() => {
-      let token = 'n2ixyjUzM'
+      let token = ''
       localStorage.setItem('token', token)
       setIsLogin(true)
       Navigate('/store')

@@ -34,7 +34,7 @@ export default function CartItem({ id, qty }: ICartItem) {
             <div className="ml-4">
               <h2 className="text-lg font-bold text-center mb-5">{product?.title}</h2>
               <p className="text-sm text-gray-500 text-center leading-8">{product?.description}</p>
-              <p className="text-xl font-bold text-red-500 text-center mt-7">{product?.price ?? 0} مبلغ </p>
+              <p className="text-xl font-bold text-red-500 text-center mt-7">{product?.price ?? 0}  $: مبلغ </p>
             </div>
           </div>
           <div className="flex items-center space-x-2">
@@ -59,15 +59,15 @@ export default function CartItem({ id, qty }: ICartItem) {
         </div>
         <div className="items-end p-1">
           <p className="text-lg font-bold text-green-600 ml-7">
-            مبلغ کل: {productTotalPrice.toLocaleString()} تومان
+            مبلغ کل: $ {productTotalPrice.toLocaleString()}
           </p>
           {product?.discount ? (
             <>
               <p className="text-lg font-bold text-red-600 ml-7">
-                تخفیف: {discountAmount.toLocaleString()} تومان
+                تخفیف:$ {discountAmount.toLocaleString()}
               </p>
               <p className="text-lg font-bold text-blue-600 ml-7">
-                مبلغ قابل پرداخت: {finalPrice.toLocaleString()} تومان
+                مبلغ قابل پرداخت:$ {finalPrice.toLocaleString()}
               </p>
             </>
           ) : (

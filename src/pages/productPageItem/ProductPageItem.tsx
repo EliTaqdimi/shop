@@ -41,11 +41,11 @@ function ProductPageItem() {
       <div className="container mx-auto p-20 flex-grow">
         <h1 className="text-4xl font-bold mb-4 text-right">توضیح محصول</h1>
         <div className="bg-white shadow-lg rounded-lg overflow-hidden flex flex-col md:flex-row h-auto">
-          <div className="md:w-1/2 p-4">
+          <div className="md:w-1/3 p-4">
             <img
               src={product.image}
               alt={product.title}
-              className="w-full h-auto object-cover rounded-lg transition-transform duration-300 hover:scale-105"
+              className="w-full h-auto object-auto rounded-lg transition-transform duration-300 hover:scale-105"
             />
           </div>
           <div className="md:w-1/2 p-6 flex flex-col justify-between">
